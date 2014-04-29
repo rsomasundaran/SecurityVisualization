@@ -1,0 +1,49 @@
+
+
+	  
+
+
+
+
+<script>
+$(document).ready(function()
+ {
+
+});
+
+opensave.make({width: 100, height: 30, dataID: "img", buttonDiv: "save"});
+</script>
+	  
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+        <title>Security Visualization</title>
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
+		<script type="text/javascript" src="opensave.js"></script>
+    </head>
+	
+    <body>
+    <table align="center">
+	<col width="200">
+	<col width="80">
+    <thead>
+      <tr>
+         <center><img src="img.png"></center>
+      </tr>
+    </thead>
+    <tbody>
+	<tr> Graph of  ....</tr>
+	<div id=img"><img src="barChart-Sample.png"></div>
+	<tr>
+		<td valign="bottom">
+			<div id="save"><button>Save</button></div>
+		</td>
+		<td></td><td></td><td></td><td></td><td></td><td></td>
+		<td valign="bottom">
+			<input onclick="window.print()" type="button" value="Print Graph" id="print" />
+		</td>
+	</tr>
+	</tbody>
+	</table>
+</body>
+</html>

@@ -1,0 +1,68 @@
+﻿<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<title>Highcharts Example</title>
+
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+		<script type="text/javascript">
+$(function () {
+        $('#container').highcharts({
+            chart: {
+                type: 'column'
+            },
+            title: {
+                text: 'Processes activity in the system'
+            },
+            xAxis: {
+                categories: [
+                    '/usr/ucb/ps -awwxu',
+                    '/usr/bin/auditd',
+                    '/usr/bin/syslog',
+                    '/bin/ftp',
+                    '/usr/bin/inetd -s',
+                    '/usr/bin/kerbd',  
+                    '/usr/bin/statd',
+                    '/usr/bin/lockd',
+                    'fsflush'
+                ]
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: 'CPU %'
+                }
+            },
+            tooltip: {
+                headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                    '<td style="padding:0"><b>{point.y:.1f} mm</b></td></tr>',
+                footerFormat: '</table>',
+                shared: true,
+                useHTML: true
+            },
+            plotOptions: {
+                column: {
+                    pointPadding: 0.2,
+                    borderWidth: 0
+                }
+            },
+            series: [{
+                name: 'Process vs CPU % usage',
+                data: [42.4, 10.2, 34.5, 39.7, 52.6, 95.0, 57.4, 60.4, 47.6, 39.1, 46.8, 51.1]
+    
+            }]
+        });
+    });
+    
+
+		</script>
+	</head>
+	<body>
+<script src="../../js/highcharts.js"></script>
+<script src="../../js/modules/exporting.js"></script>
+
+<div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+
+	</body>
+</html>

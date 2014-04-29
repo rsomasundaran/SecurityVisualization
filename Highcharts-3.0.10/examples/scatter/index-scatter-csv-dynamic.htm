@@ -1,0 +1,111 @@
+﻿<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<title>Highcharts Example</title>
+
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+		<script type="text/javascript">
+
+//START
+    var options = {
+		    chart: {
+		            renderTo: 'container',
+		            defaultSeriesType: 'scatter'
+            //        type: 'scatter',
+            //        zoomType: 'xy'
+		        },
+		    title: {
+		            text: 'Number of Packets per Protocol Type'
+		        },
+		    xAxis: {
+                title: {
+                    enabled: true,
+                    text: 'Height (cm)'
+                },
+                startOnTick: true,
+                endOnTick: true,
+                showLastLabel: true
+              //  categories: []
+            },
+            yAxis: {
+                title: {
+                    text: 'Weight (kg)'
+                }
+            },
+            legend: {
+                layout: 'vertical',
+                align: 'left',
+                verticalAlign: 'top',
+                x: 100,
+                y: 70,
+                floating: true,
+                backgroundColor: '#FFFFFF',
+                borderWidth: 1
+            },
+            plotOptions: {
+                scatter: {
+                    marker: {
+                        radius: 5,
+                        states: {
+                            hover: {
+                                enabled: true,
+                                lineColor: 'rgb(100,100,100)'
+                            }
+                        }
+                    },
+                    states: {
+                        hover: {
+                            marker: {
+                                enabled: false
+                            }
+                        }
+                    },
+                    tooltip: {
+                        headerFormat: '<b>{series.name}</b><br>',
+                        pointFormat: '{point.x} cm, {point.y} kg'
+                    }
+                }
+            },
+            //series: []
+    };
+
+            $.get('testData-scatter.csv', function (data) {
+		        // Split the lines
+                var lines = data.split('\n');
+                series = [];
+
+		        // Iterate over the lines and add categories or series
+		       $.each(lines, function (lineNo, line) {
+		            var item = line.split(',');
+
+		            if (typeof series[item[0]] !== 'object') {
+		                series[item[0]] = series[series.length] = {
+		                    name: item[0],
+		                    data: []
+		                }
+		            }
+
+		            series[item[0]].data.push({
+		                info: item[1],
+		                x: parseInt(item[2]),
+		                y: parseInt(item[3])
+		            });
+
+		        });
+                // Create the chart
+		        var chart = new Highcharts.Chart(options);
+		    });
+
+//END
+
+		</script>
+	</head>
+	<body>
+<script src="../../js/highcharts.js"></script>
+<script src="../../js/modules/exporting.js"></script>
+
+<div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+
+	</body>
+</html>

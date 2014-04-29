@@ -1,0 +1,59 @@
+﻿<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<title>Highcharts Example</title>
+
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+		<script type="text/javascript">
+
+//START
+
+		    $(document).ready(function () {
+
+		        var options = {
+		            chart: {
+		                renderTo: 'container',
+		                type: 'spline'
+		            },
+                    title: {
+		                text: 'Number of blocked connections per day'
+		            },
+                    xAxis: {
+		                title: {
+		                    enabled: true,
+		                    text: 'Day of the week'
+		                },
+		            },
+		            yAxis: {
+		                title: {
+		                    text: 'Count (Blocked connections)'
+		                }
+		            },
+                    tooltip: {
+		                        headerFormat: '<b>{series.name}</b><br>',
+		                        pointFormat: 'port {point.x}, time {point.y}'
+		            },
+		            series: [{ name: 'Blocked connections',
+		            }]
+		        };
+
+		        $.getJSON('testData-spline.json', function (data) {
+		            options.series[0].data = data;
+		            var chart = new Highcharts.Chart(options);
+		        });
+
+		    });
+            
+//END
+
+		</script>
+	</head>
+	<body>
+<script src="../../js/highcharts.js"></script>
+<script src="../../js/modules/exporting.js"></script>
+
+<div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+
+	</body>
+</html>

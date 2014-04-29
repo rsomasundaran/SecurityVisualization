@@ -1,0 +1,142 @@
+﻿<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<title>Security Virtualization</title>
+
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+		<script type="text/javascript">
+
+		    var options = {
+		        chart: {
+		            renderTo: 'container',
+		            defaultSeriesType: 'column'
+		        },
+		        title: {
+		            text: 'No. of packets'
+		        },
+		        xAxis: {
+		            categories: []
+		        },
+		        yAxis: {
+		            title: {
+		                text: 'Protocol'
+		            }
+		        },
+		        series: []
+		    };
+
+		    $.get('PacketsPerHostsPerProtocol.csv', function (data) {
+		        // Split the lines
+		        var lines = data.split('\n');
+
+		        // Iterate over the lines and add categories or series
+		        $.each(lines, function (lineNo, line) {
+		            var items = line.split(',');
+
+		            // header line containes categories
+		            if (lineNo == 0) {
+		                $.each(items, function (itemNo, item) {
+		                    if (itemNo > 0) options.xAxis.categories.push(item);
+		                });
+		            }
+
+		            // the rest of the lines contain data with their name in the first 
+		            // position
+		            else {
+		                var series = {
+		                    data: []
+		                };
+		                $.each(items, function (itemNo, item) {
+		                    if (itemNo == 0) {
+		                        series.name = item;
+		                    } else {
+		                        series.data.push(parseFloat(item));
+		                    }
+		                });
+
+		                options.series.push(series);
+
+		            }
+
+		        });
+
+		        // Create the chart
+		        var chart = new Highcharts.Chart(options);
+		    });
+
+//$(function () {
+        $('#container').highcharts({
+            chart: {
+                type: 'bar'
+            },
+            title: {
+                text: 'Number of Packets per Protocol Type'
+            },
+            subtitle: {
+                text: 'Source: myHost.sjsu.edu'
+            },
+            xAxis: {
+                categories: ['192.168.1.7', '192.168.72.140', '192.168.5.14'],
+                title: {
+                    text: null
+                }
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: 'No. of packets',
+                    align: 'high'
+                },
+                labels: {
+                    overflow: 'justify'
+                }
+            },
+            tooltip: {
+                valueSuffix: ' number'
+            },
+            plotOptions: {
+                bar: {
+                    dataLabels: {
+                        enabled: true
+                    }
+                }
+            },
+            legend: {
+                layout: 'vertical',
+                align: 'right',
+                verticalAlign: 'top',
+                x: -40,
+                y: 100,
+                floating: true,
+                borderWidth: 1,
+                backgroundColor: '#FFFFFF',
+                shadow: true
+            },
+            credits: {
+                enabled: false
+            },
+            series: [{
+                name: 'ICMP',
+                data: [583, 133, 50]
+            }, {
+                name: 'TCP',
+                data: [244, 544, 122]
+            }, {
+                name: 'UDP',
+                data: [601, 22, 75]
+            }]
+        });
+    });
+    
+
+		</script>
+	</head>
+	<body>
+<script src="../../js/highcharts.js"></script>
+<script src="../../js/modules/exporting.js"></script>
+
+<div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+
+	</body>
+</html>

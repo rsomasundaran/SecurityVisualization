@@ -1,0 +1,38 @@
+
+.chart {
+    width: 70%;
+    height: 400px;
+    display: block;
+    padding-left: 300px;
+}
+
+.hidechart {
+    width: 0%;
+    height: 0px;
+}
+
+
+.width30 {
+    width: 30px;
+}
+
+.widthfull {
+    width: 130px;
+}
+
+.width40 {
+    width: 40px;
+}
+
+.width50 {
+    width: 50px;
+}
+
+
+.width60 {
+    width: 50px;
+}
+
+.widthbig {
+    width: 80px;
+}

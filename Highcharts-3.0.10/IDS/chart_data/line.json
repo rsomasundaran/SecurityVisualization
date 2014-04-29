@@ -1,0 +1,22 @@
+{
+   "chart": {
+       "type": "line",
+       "position": "right",
+       "marginleft":200
+   },
+   "title": {
+       "text": "Daily Event Logging"
+   },
+   "xAxis": {
+       "labels": {
+           "rotation": -45
+       }
+   },
+   "yAxis": {
+       "title": {
+           "text": "Events registered"
+       }
+   },
+   "series": [{
+       "name": "Events"}]
+}

@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="shortcut icon" href="../../assets/ico/favicon.ico">
+
+    <title>Security Virtualization</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap theme -->
+    <link href="css/bootstrap-theme.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="theme.css" rel="stylesheet">
+
+    <!-- Just for debugging purposes. Don't actually copy this line! -->
+    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+
+  <body role="document">
+
+    <!-- Fixed navbar -->
+    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">Security Central</a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="SecurityCentral.html">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
+
+    <div class="container theme-showcase" role="main">
+
+      <!-- Main jumbotron for a primary marketing message or call to action -->
+      <div class="jumbotron">
+        <h1>Security Visualization</h1>
+        <p>The following group of graphs plot variety of security relevant charts. They source security data from tcpdump/wireshark, ps, snort and firewall logs.</p>
+        <p><a href="#" class="btn btn-primary btn-lg" role="button">Learn more on interpreting charts &raquo;</a></p>
+      </div>
+
+
+      <div class="page-header">
+        <h1>Security Visualization Charts</h1>
+      </div>
+      <div class="row">
+        <div class="col-sm-4">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title">No. of packets per protocol type</h3>
+            </div>
+            <div class="panel-body">
+              <b>Chart Type: Bar</b><br>
+              <b>Source:</b> tcpdump<br>
+              <b>X-axis:</b> Source IP address<br>
+              <b>Y-axis:</b> Number of packets per protocol type<br>
+              <p>This chart plots number of packets of various protocols such as TCP, UDP and ICMP from different source hosts. <a href="http://localhost:8080/examples/bar-basic/index-csv-dynamic.htm">Plot</a></p>
+            </div>
+          </div>
+          <div class="panel panel-primary">
+            <div class="panel-heading">
+              <h3 class="panel-title">No. of blocked connections per day</h3>
+            </div>
+            <div class="panel-body">
+              <b>Chart Type: Spline</b><br>
+              <b>Source:</b> firewall log<br>
+              <b>X-axis:</b> Day of the week<br>
+              <b>Y-axis:</b> Count of blocked connections<br>
+              <p>This chart plots count of blocked connections at firewall on each day of the week. <a href="http://localhost:8080/examples/spline-basic/index-spline-json-dynamic.htm">Plot</a></p>
+            </div>
+          </div>
+        </div><!-- /.col-sm-4 -->
+        <div class="col-sm-4">
+          <div class="panel panel-success">
+            <div class="panel-heading">
+              <h3 class="panel-title">Port activity at various times of the day</h3>
+            </div>
+            <div class="panel-body">
+              <b>Chart Type: Scatter</b><br>
+              <b>Source:</b> tcpdump<br>
+              <b>X-axis:</b> Time of day<br>
+              <b>Y-axis:</b> Destination port<br>
+              <p>This chart plots the count of packets comming to each destination port at different times of the day. <a href="http://localhost:8080/examples/scatter/index-scatter-json-dynamic.htm">Plot</a></p>
+            </div>
+          </div>
+          <div class="panel panel-info">
+            <div class="panel-heading">
+              <h3 class="panel-title">Processes activity in the system</h3>
+            </div>
+            <div class="panel-body">
+               <b>Chart Type: Histogram</b><br>
+              <b>Source:</b> ps<br>
+              <b>X-axis:</b> Process<br>
+              <b>Y-axis:</b> %CPU usage<br>
+              <p>This chart plots the % of CPU time per process (top 10) running on the system. <a href="file:///C:/Users/rsomasun/Desktop/NS-295/examples/295-discreteBarChart-orig.html">Plot</a></p>
+            </div>
+          </div>
+        </div><!-- /.col-sm-4 -->
+        <div class="col-sm-4">
+          <div class="panel panel-warning">
+            <div class="panel-heading">
+              <h3 class="panel-title">Area Spline Chart</h3>
+            </div>
+            <div class="panel-body">
+              <b>Chart Type: Area Spline</b><br>
+              <b>Source:</b> tcpdump<br>
+              <b>X-axis:</b> Time of day<br>
+              <b>Y-axis:</b> Destination port<br>
+              <p>This chart plots the count of packets comming to each destination port at different times of the day. <a href="file:///C:/Users/rsomasun/Desktop/NS-295/MyWorkArea/Highcharts-3.0.10/examples/areaspline/index.htm">Plot</a></p>
+            </div>
+          </div>
+          <div class="panel panel-danger">
+            <div class="panel-heading">
+              <h3 class="panel-title">Line Chart</h3>
+            </div>
+            <div class="panel-body">
+              <b>Chart Type: Line</b><br>
+              <b>Source:</b> tcpdump<br>
+              <b>X-axis:</b> Time of day<br>
+              <b>Y-axis:</b> Destination port<br>
+              <p>This chart plots the count of packets comming to each destination port. <a href="file:///C:/Users/rsomasun/Desktop/NS-295/MyWorkArea/Highcharts-3.0.10/examples/line-basic/index.htm">Plot</a></p>
+            </div>
+          </div>
+        </div><!-- /.col-sm-4 -->
+      </div>
+
+
+
+      <div class="page-header">
+        <h1>Why Visualization?</h1>
+      </div>
+      <div class="well">
+        <p><i>A picture is worh a thousand log records</i> <br>&nbsp &nbsp Raffael Marty</p>
+      </div>
+
+
+    </div> <!-- /container -->
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="../../dist/js/bootstrap.min.js"></script>
+    <script src="../../assets/js/docs.min.js"></script>
+  </body>
+</html>

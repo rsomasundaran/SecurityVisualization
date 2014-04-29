@@ -1,0 +1,5 @@
+Proto,no1,no2,no3
+TCP,23,1,1
+UDP,1,5,5
+ICMP,3,76,1
+FTP,23,89,3

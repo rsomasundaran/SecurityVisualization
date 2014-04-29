@@ -1,0 +1,393 @@
+﻿<!DOCTYPE html>
+<!-- CMPE 295B - Masters Project - Rajesh Somasundaran & Tanvir Kekan -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Dashboard for Network Analysis</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <link href="css/demo_table.css" rel="stylesheet">
+
+
+    <!-- Custom styles for this template -->
+    <link href="css/dashboard.css" rel="stylesheet">
+
+    <!-- My own CSS file-->
+    <link href="css/mycss.css" rel="stylesheet">
+
+    <style type="text/css"></style><style id="holderjs-style" type="text/css"></style></head>
+
+  <body style="">
+   <div id="high_chart" style="width:70%; height:400px; display:none; align:right; position:right></div>
+    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">Intrusion Detection and Analysis</a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="/#">Dashboard</a></li>
+            <li><a href="#">Settings</a></li>
+            <li><a href="#">Profile</a></li>
+            <li><a href="#">Help</a></li>
+          </ul>
+          <form class="navbar-form navbar-right">
+            <input type="text" class="form-control" placeholder="Search...">
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-sm-3 col-md-2 sidebar">
+          <ul class="nav nav-sidebar">
+            <li class="active" id='home'><a href="#">Home</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Configure Systems</a></li>
+            <li><a href="#">Manage Alerts</a></li>
+          </ul>
+          <ul class="nav nav-sidebar">
+            <li><a href="">Understanding Network Security</a></li>
+            <li><a href="">Report Intusion Attempt</a></li>
+            <li><a href="">FAQ</a></li>
+            </ul>
+          <ul class="nav nav-sidebar">
+            <li><a href="">Contact</a></li>
+          </ul>
+        </div>
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+          <h1 class="page-header">Security Central</h1>
+
+           <div class="row placeholders">
+            <div class="col-xs-6 col-sm-3 placeholder">
+              <img id="vuln" data-src="holder.js/100x100/auto/lava/text: 62" class="img-responsive" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMDAiIGhlaWdodD0iMjAwIj48cmVjdCB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iIzBEOEZEQiI+PC9yZWN0Pjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9IjEwMCIgeT0iMTAwIiBzdHlsZT0iZmlsbDojZmZmO2ZvbnQtd2VpZ2h0OmJvbGQ7Zm9udC1zaXplOjEzcHg7Zm9udC1mYW1pbHk6QXJpYWwsSGVsdmV0aWNhLHNhbnMtc2VyaWY7ZG9taW5hbnQtYmFzZWxpbmU6Y2VudHJhbCI+MjAweDIwMDwvdGV4dD48L3N2Zz4=">
+              <h4>Vulnerabilities Found</h4>
+              <span class="text-muted">Last scanned: Yesterday</span>
+            </div>
+            <div class="col-xs-6 col-sm-3 placeholder">
+              <img data-src="holder.js/100x100/auto/sky/text: Scan" id="scan_button" class="img-responsive" alt="200x200" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMDAiIGhlaWdodD0iMjAwIj48cmVjdCB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iIzM5REJBQyI+PC9yZWN0Pjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9IjEwMCIgeT0iMTAwIiBzdHlsZT0iZmlsbDojMUUyOTJDO2ZvbnQtd2VpZ2h0OmJvbGQ7Zm9udC1zaXplOjEzcHg7Zm9udC1mYW1pbHk6QXJpYWwsSGVsdmV0aWNhLHNhbnMtc2VyaWY7ZG9taW5hbnQtYmFzZWxpbmU6Y2VudHJhbCI+MjAweDIwMDwvdGV4dD48L3N2Zz4=">
+              <h4>Scan Now</h4>
+              <span class="text-muted">Click to run a network scan</span>
+            </div>
+            <div class="col-xs-6 col-sm-3 placeholder">
+              <img data-src="holder.js/100x100/auto/vine/text: Monitor" id="view_graph" class="img-responsive" alt="200x200" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMDAiIGhlaWdodD0iMjAwIj48cmVjdCB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iIzM5REJBQyI+PC9yZWN0Pjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9IjEwMCIgeT0iMTAwIiBzdHlsZT0iZmlsbDojMUUyOTJDO2ZvbnQtd2VpZ2h0OmJvbGQ7Zm9udC1zaXplOjEzcHg7Zm9udC1mYW1pbHk6QXJpYWwsSGVsdmV0aWNhLHNhbnMtc2VyaWY7ZG9taW5hbnQtYmFzZWxpbmU6Y2VudHJhbCI+MjAweDIwMDwvdGV4dD48L3N2Zz4=">
+              <h4>Monitor Intrusion</h4>
+              <span class="text-muted">Click to monitor intrusion attempts</span>
+            </div>
+            <div class="col-xs-6 col-sm-3 placeholder">
+              <img data-src="holder.js/100x100/auto/sky/text: Graphs" id="plot_chart" class="img-responsive" alt="200x200" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMDAiIGhlaWdodD0iMjAwIj48cmVjdCB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iIzM5REJBQyI+PC9yZWN0Pjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9IjEwMCIgeT0iMTAwIiBzdHlsZT0iZmlsbDojMUUyOTJDO2ZvbnQtd2VpZ2h0OmJvbGQ7Zm9udC1zaXplOjEzcHg7Zm9udC1mYW1pbHk6QXJpYWwsSGVsdmV0aWNhLHNhbnMtc2VyaWY7ZG9taW5hbnQtYmFzZWxpbmU6Y2VudHJhbCI+MjAweDIwMDwvdGV4dD48L3N2Zz4=">
+              <h4>Visualize Security</h4>
+              <span class="text-muted">Click to plot </span> 
+              <a href="SecurityVisualization.html">Charts</a>  
+            </div>
+            <div class="col-xs-6 col-sm-3 placeholder">
+              <img data-src="holder.js/100x100/auto/grey/text: Trend" id="view_trends" class="img-responsive" alt="200x200" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMDAiIGhlaWdodD0iMjAwIj48cmVjdCB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iIzBEOEZEQiI+PC9yZWN0Pjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9IjEwMCIgeT0iMTAwIiBzdHlsZT0iZmlsbDojZmZmO2ZvbnQtd2VpZ2h0OmJvbGQ7Zm9udC1zaXplOjEzcHg7Zm9udC1mYW1pbHk6QXJpYWwsSGVsdmV0aWNhLHNhbnMtc2VyaWY7ZG9taW5hbnQtYmFzZWxpbmU6Y2VudHJhbCI+MjAweDIwMDwvdGV4dD48L3N2Zz4=">
+              <h4>Analyse Trends</h4>
+              <span class="text-muted">Analyse trends in security attacks</span>
+            </div>
+          </div>
+<!--           <div class="container">
+              <div class="progress progress-striped active">
+                  <div class="bar" style="width: 0%;"></div>
+              </div>
+          </div> -->
+            <div class="del-for-graph" id="rm-for-graph">  
+                <h2 id ='section_title' class="sub-header">Events Overview</h2>
+            <div class="plot_options" id="show_buttons">
+                <div class="btn-group" id="x_axis">
+                    <button class="btn btn-default btn-lg dropdown-toggle btn-select" type="button" data-toggle="dropdown" style="background-color:#8533FF;color:white;">
+                     X Axis <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">Timestamp</a></li>
+                        <li><a href="#">Source Ip</a></li>
+                        <li><a href="#">Destination IP</a></li>
+                        <li><a href="#">Source Port</a></li>
+                        <li><a href="#">Destination Port</a></li>
+
+                    </ul>
+                </div>
+                <div class="btn-group" id="y_axis" style="color:blue;">
+                    <button class="btn btn-default btn-lg dropdown-toggle btn-select1" type="button" data-toggle="dropdown" style="background-color:#8533FF;color:white;">
+                     Y Axis <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">Timestamp</a></li>
+                        <li><a href="#">Source Ip</a></li>
+                        <li><a href="#">Destination IP</a></li>
+                        <li><a href="#">Source Port</a></li>
+                        <li><a href="#">Destination Port</a></li>
+                    </ul>
+                </div>
+                <div class="btn-group" id="graph_type" style="color:blue;">
+                    <button class="btn btn-default btn-lg dropdown-toggle btn-select2" type="button" data-toggle="dropdown" style="background-color:#8533FF;color:white;">
+                     Graph Type <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu pull-right">
+                        <li><a href="#">Bar Graph</a></li>
+                        <li><a href="#">Line Graph</a></li>
+                        <li><a href="#">Area Spline</a></li>
+                        <li><a href="#">Spline</a></li>
+                        <li><a href="#">Pie</a></li>
+                    </ul>
+                </div>
+                    <div class="btn btn-primary btn-lg btn-block active" id="plot_btn" style="top:200px; disabled:true;"><span class="glyphicon glyphicon-stats"></span> Plot</div>
+            </div>
+<!--
+                <li class="dropdown" id="x_axis">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">X-AXIS<b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Timestamp</a></li>
+                            <li><a href="#">Source Ip</a></li>
+                            <li><a href="#">Destination IP</a></li>
+                            <li><a href="#">Source Port</a></li>
+                            <li><a href="#">Destination Port</a></li>
+                            <li class="divider"></li>
+                        </ul>
+                </li>
+-->
+
+                <div class="table-responsive" id="main_area">
+                    <table id="example" class="display" >
+                </div>
+            </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/docs.min.js"></script>
+
+    <!--Data tables -->
+    <script type="text/javascript" charset="utf-8" src="js/jquery.dataTables.js"></script>
+    <script type="text/javascript" src="js/moments.js"></script>
+    <script type="text/javascript" src="js/network.js"></script>
+
+    <!-- High Charts -->
+    <script src="http://code.highcharts.com/highcharts.js"></script>
+    <script src="http://code.highcharts.com/modules/exporting.js"></script>
+
+    <script type="text/javascript">
+        var globalList;
+        var fullData = [];
+        var text;
+        function numToDot( num) {
+        var d = num%256;
+        for (var i = 3; i > 0; i--)
+        {
+            num = Math.floor(num/256);
+            d = num%256 + '.' + d;
+        }
+        return d;
+        }
+
+        function FindPortTypes(row, src)
+        {
+        if(src) {
+            if(row.ip_proto == 17)
+                return row.udp_sport;
+            else if(row.ip_proto == 6)
+                return row.tcp_sport;
+            else
+                return "NA";
+        }
+        else {
+            if(row.ip_proto == 17)
+                return row.udp_dport;
+            else if(row.ip_proto == 6)
+                return row.tcp_dport;
+            else
+                return "NA";
+        }
+        }
+
+        function hide_buttons()
+        {
+            document.getElementById("x_axis").style.display="none"
+            document.getElementById("y_axis").style.display="none"
+            document.getElementById("graph_type").style.display="none"
+            document.getElementById("plot_btn").style.display="none"
+        }
+
+
+function draw_graph() {
+    document.getElementById("high_chart").style.display = "block";
+     $('#high_chart').highcharts({
+        chart: {
+            type: 'bar',
+            position: 'right',
+            marginleft:200
+        },
+        title: {
+            text: 'Fruit Consumption'
+        },
+        xAxis: {
+            categories: ['Apples', 'Bananas', 'Oranges']
+        },
+        yAxis: {
+            title: {
+                text: 'Fruit eaten'
+            }
+        },
+        series: [{
+            name: 'Jane',
+            data: [1, 0, 4]},
+        {
+            name: 'John',
+            data: [5, 7, 3]}]
+    });
+}
+        $(".dropdown-menu li a").click(function(){
+             var selText = $(this).text();
+              $(this).parents('.btn-group').find('.dropdown-toggle').html(selText+' <span class="caret"></span>');
+});
+        var packetLog;
+        $("document").ready(function() {
+            hide_buttons();
+            $("#view_graph").click( function( e ) {
+                view_graph();
+                console.log("localStorage",globalList);
+            });
+            $("#overview").click( function( e ) {
+                display_tables();
+            });
+            $('#plot_btn').on('click', function (e) {
+                document.getElementById("show_buttons").style.display = "none"
+                var title = document.getElementById('section_title');
+                title.innerHTML = "Bar Graph";
+                draw_graph();
+           //ACTION
+            })
+                createTable(fullData,function (l){
+                    var vuln_length = l.length;
+                    var dataToStore = JSON.stringify(l);
+                    localStorage.setItem('ListData', dataToStore);
+                    globalList = l;
+
+                    //localStorage.ListData = l;
+                    var vuln_circle = document.getElementById("vuln");
+                    vuln_circle.setAttribute("data-src","holder.js/100x100/auto/lava/text: " + l.length);
+                    Holder.run();
+                });
+
+
+        });
+
+    </script>
+
+    <style>
+        .detail_table, tr, th {
+            border:1px solid black;
+        }
+        th, td {
+            padding:3px;
+        }
+    </style>
+
+    <table class="table table-bordered" id="detail_table" style="table-layout:fixed; width:1400px" align="left">
+            <tr>
+              <th class="width50" rowspan="2">IP</th>
+              <td class="widthfull">Source IP</td>
+              <td class="widthfull">Dest IP</td>
+              <td class="widthfull">Ver</td>
+              <td class="widthfull">HL</td>
+              <td class="widthbig">TOS</td>
+              <td class="widthbig">Len</td>
+              <td class="width50">ID</td>
+              <td class="width40">Flg</td>
+              <td class="width60">Offset</td>
+              <td class="width40">TTL</td>
+              <td class="widthfull">Chksum</td>
+          </tr>
+
+            <tr>
+              <td id ='src_ip'>-----</td>
+              <td id = 'dst_ip'>-----</td>
+              <td id = 'ip_ver'>-----</td>
+              <td id = 'ip_hl'>-----</td>
+              <td id = 'ip_tos'>-----</td>
+              <td id = 'ip_len'>-----</td>
+              <td id = 'ip_id'>-----</td>
+              <td id = 'ip_flags'>-----</td>
+              <td id = 'ip_off'>-----</td>
+              <td id = 'ip_ttl'>-----</td>
+              <td id = 'ip_csum'>-----</td>
+            </tr>
+            <tr>
+              <th class="width50" rowspan="2">TCP</th>
+              <td>Src Port</td>
+              <td>Dest Port</td>
+              <td>R1</td>
+              <td>R0</td>
+              <td>URG</td>
+              <td>ACK</td>
+              <td>PSH</td>
+              <td>RST</td>
+              <td>SYN</td>
+              <td>FIN</td>
+              <td>Seq#</td>
+
+          </tr>
+
+            <tr>
+
+              <td id ='tcp_sport'>-----</td>
+              <td id = 'tcp_dport'>-----</td>
+              <td id = 'tcp_r1'>-----</td>
+              <td id = 'tcp_r0'>-----</td>
+              <td id = 'tcp_urg'>-----</td>
+              <td id = 'tcp_ack'>-----</td>
+              <td id = 'tcp_psh'>-----</td>
+              <td id = 'tcp_rst'>-----</td>
+              <td id = 'tcp_syn'>-----</td>
+              <td id = 'tcp_fin'>-----</td>
+              <td id = 'tcp_seq'>-----</td>
+            </tr>
+            <tr>
+                <th class="width50" rowspan="2">   </th>
+                <td class="widthfull">Ack#</td>
+                <td class="widthfull">Offset</td>
+                <td class="widthfull">Res</td>
+                <td class="widthfull">Window</td>
+                <td class="widthfull">URP</td>
+                <td class="widthfull">checksum</td>
+            </tr>
+            <tr>
+                <td id = 'tcp_ackn'>-----</td>
+                <td id = 'tcp_off'>-----</td>
+                <td id = 'tcp_res'>-----</td>
+                <td id = 'tcp_win'>-----</td>
+                <td id = 'tcp_urp'>-----</td>
+                <td id = 'tcp_csum'>-----</td>
+            </tr>
+            <tr>
+                 <th rowspan="5">Data</th>
+                 <td  style="word-wrap: break-word;" colspan="12" id = 'packet_data'>
+                     line 1
+                 </td>
+                 <tr>
+                     <td  style="word-wrap: break-word;" colspan="10" id = 'ascii_data'>
+                         line 2
+                     </td>
+                 </tr>
+            </tr>
+        </table>
+
+</body></html>

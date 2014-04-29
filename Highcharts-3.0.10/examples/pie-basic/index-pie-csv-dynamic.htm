@@ -1,0 +1,97 @@
+﻿<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<title>Highcharts Example</title>
+
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+		<script type="text/javascript">
+        
+        //$.get('http://localhost.com:8080/examples/bar-basic/PacketsPerHostsPerProtocol.csv', function (data) {
+		    //$.get('PacketsPerHostsPerProtocol.csv', function (data) {
+		    //$.get('tcpdump1.csv', function (data) {
+            $.get('testData-pie-basic.csv', function (data) {
+		        // Split the lines
+		        var lines = data.split('\n');
+
+		        // Iterate over the lines and add categories or series
+		        $.each(lines, function (lineNo, line) {
+		            var items = line.split(',');
+
+		            // header line containes categories
+		            if (lineNo == 0) {
+		                $.each(items, function (itemNo, item) {
+		                    if (itemNo > 0) options.xAxis.categories.push(item);
+		                });
+		            }
+
+		            // the rest of the lines contain data with their name in the first 
+		            // position
+		            else {
+		                var series = {
+		                    data: []
+		                };
+		                $.each(items, function (itemNo, item) {
+		                    if (itemNo == 0) {
+		                        series.name = item;
+		                    } else {
+		                        series.data.push(parseFloat(item));
+		                    }
+		                });
+
+		                options.series.push(series);
+
+		            };
+	    });
+
+$(function () {
+    $('#container').highcharts({
+        chart: {
+            plotBackgroundColor: null,
+            plotBorderWidth: null,
+            plotShadow: false
+        },
+        title: {
+            text: 'Browser market shares at a specific website, 2010'
+        },
+        tooltip: {
+    	    pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+        },
+        plotOptions: {
+            pie: {
+                allowPointSelect: true,
+                cursor: 'pointer',
+                dataLabels: {
+                    enabled: true,
+                    color: '#000000',
+                    connectorColor: '#000000',
+                    format: '<b>{point.name}</b>: {point.percentage:.1f} %'
+                }
+            }
+        },
+        //Add dynamic csv reading logic here and fill series.
+        //series: []
+
+        		    
+    });
+
+
+
+//		        });
+                // Create the chart
+	//	        var chart = new Highcharts.Chart(options);
+		//    });
+    //});
+//});
+    
+
+		</script>
+	</head>
+	<body>
+<script src="../../js/highcharts.js"></script>
+<script src="../../js/modules/exporting.js"></script>
+
+<div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+
+	</body>
+</html>
